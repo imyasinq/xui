@@ -53,5 +53,13 @@ class Base {
     public function getTime($day) {
         return strtotime("+{$day} day") * 1000;
     }
+
+    public function jsonEncode($data) {
+        return json_encode($data, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+    }
+
+    public function getCookie() {
+        return $this->cookie;
+    }
 }
 ?>
