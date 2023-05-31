@@ -33,5 +33,9 @@ class Base {
         $this->path       = $path;
         $this->cookie     = __DIR__.DIRECTORY_SEPARATOR."_{$hostname}_server.txt";
     }
+
+    public function sizeConvert($size) {
+        return $size * 1024 * 1024 * 1024;
+    }
 }
 ?>
