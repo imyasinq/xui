@@ -20,5 +20,10 @@ class Base {
             "tls"
         ]
     ];
+    protected $settings = [
+        'clients'    => [],
+        'decryption' => "none",
+        'fallbacks'  => []
+    ];
 }
 ?>
