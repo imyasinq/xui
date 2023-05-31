@@ -71,7 +71,7 @@ class Base {
         return $this->id;
     }
 
-    public function getMethod($method) {
+    protected function getMethod($method) {
         if (isset($this->methods[$method])) {
             $method_path = $this->methods[$method];
             if (strpos($method_path, "{id}")) {
@@ -80,6 +80,38 @@ class Base {
             return $method_path;
         }
         return false;
+    }
+
+    protected function command($method, $data, $isPost = false) {
+        $path = $this->path != "" ? "/{$this->path}" : $this->path;
+        $url  = "{$this->protocol}://{$this->hostname}:{$this->port}{$path}/{$this->getMethod($method)}";
+        $ch   = curl_init();
+
+        $options = [
+            CURLOPT_SSL_VERIFYHOST => false,
+            CURLOPT_SSL_VERIFYPEER => false,
+            CURLOPT_USERAGENT      => "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/113.0",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_COOKIEFILE     => $this->getCookie(),
+            CURLOPT_COOKIEJAR      => $this->getCookie(),
+            CURLOPT_URL            => $url,
+            CURLOPT_POST           => $isPost == true ? true : false,
+            CURLOPT_CUSTOMREQUEST  => $isPost == true ? "POST" : "GET",
+            CURLOPT_POSTFIELDS     => $data
+        ];
+
+        curl_setopt_array($ch, $options);
+        $result = curl_exec($ch);
+
+        if (curl_error($ch)) {
+            file_put_contents("xui_curl_error.txt", curl_error($ch));
+        } else {
+            file_put_contents("xui_curl_result.txt", $result);
+        }
+
+        curl_close($ch);
+        return $result;
     }
 }
 ?>
