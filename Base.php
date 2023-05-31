@@ -58,10 +58,6 @@ class Base {
         return json_encode($data, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
     }
 
-    public function getCookie() {
-        return $this->cookie;
-    }
-
     public function setId($id) {
         $this->id = $id;
         return $this;
@@ -69,6 +65,10 @@ class Base {
 
     public function getId() {
         return $this->id;
+    }
+
+    protected function getCookie() {
+        return $this->cookie;
     }
 
     protected function getMethod($method) {
