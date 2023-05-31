@@ -70,5 +70,16 @@ class Base {
     public function getId() {
         return $this->id;
     }
+
+    public function getMethod($method) {
+        if (isset($this->methods[$method])) {
+            $method_path = $this->methods[$method];
+            if (strpos($method_path, "{id}")) {
+                return strtr($method_path, ['{id}' => $this->getId()]);
+            }
+            return $method_path;
+        }
+        return false;
+    }
 }
 ?>
