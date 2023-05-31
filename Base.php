@@ -50,7 +50,7 @@ class Base {
         return substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz'), 1, 8);
     }
 
-    protected function getTime($day) {
+    public function getTime($day) {
         return strtotime("+{$day} day") * 1000;
     }
 }
