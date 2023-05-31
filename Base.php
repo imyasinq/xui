@@ -13,5 +13,12 @@ class Base {
         'addClient'    => "panel/api/inbounds/addClient",
         'updateClient' => "panel/api/inbounds/updateClient/{id}"
     ];
+    protected $sniffing = [
+        'enabled' => true,
+        'destOverride' => [
+            "http",
+            "tls"
+        ]
+    ];
 }
 ?>
