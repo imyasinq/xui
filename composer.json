@@ -1,0 +1,18 @@
+{
+    "name": "mRYasinQ/xui",
+    "description": "API for Sanaei X-UI Panel.",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "mRYasinQ\\xui\\": "App/"
+        }
+    },
+    "authors": [
+        {
+            "name": "mRYasinQ",
+            "email": "yasinabbasi.y20@gmail.com"
+        }
+    ],
+    "require": {
+    }
+}
