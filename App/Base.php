@@ -8,8 +8,8 @@ class Base {
     protected $id;
     protected $methods = [
         'login'        => "login",
-        'lists'        => "panel/api/inbounds/list",
-        'list'         => "panel/api/inbounds/get/{id}",
+        'inbounds'     => "panel/api/inbounds/list",
+        'inbound'      => "panel/api/inbounds/get/{id}",
         'add'          => "panel/api/inbounds/add",
         'update'       => "panel/api/inbounds/update/{id}",
         'delete'       => "panel/api/inbounds/del/{id}",
