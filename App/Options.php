@@ -28,5 +28,14 @@ trait Options {
         }
         return false;
     }
+
+    public function changeStatusInbound($inbound_id) {
+        $inbound = json_decode($this->inbound($inbound_id), true);
+        if (isset($inbound) && $inbound['success'] == true) {
+            $status = $inbound['obj']['enable'] == false ? true : false;
+            return $this->update($inbound_id, $status, $inbound['expiryTime'], $inbound['total'], $inbound['settings'], $inbound['streamSettings'], $inbound['port'], $inbound['protocol'], $inbound['sniffing'], $inbound['listen']);
+        }
+        return false;
+    }
 }
 ?>
