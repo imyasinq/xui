@@ -99,34 +99,26 @@ class Xui extends Base {
         ], true);
     }
 
-    public function changeUID($inbound_id) {
-        $inbound = json_decode($this->inbound($inbound_id,), true);
-        if (isset($inbound) && $inbound['success'] == true) {
-            $settings = json_decode($inbound['obj']['settings'], true);
-            $client   = $settings['clients'][0];
-            if (isset($client)) {
-                $this->setId($client['id']);
-                return $this->command('updateClient', [
-                    'id' => $inbound_id,
-                    'settings' => $this->jsonEncode([
-                        'clients' => [
-                            [
-                                'id'           => $this->generateId(),
-                                'flow'         => $client['flow'],
-                                'email'        => $client['email'],
-                                'totalGB'      => $client['totalGB'],
-                                'expiryTime'   => $client['expiryTime'],
-                                'limitIp'      => $client['limitIp'],
-                                'delayedStart' => false,
-                                'tgId'         => "",
-                                'subId'        => ""
-                            ]
-                        ]
-                    ])
-                ], true);
-            }
-        }
-        return false;
+    public function updateClient($inbound_id, $uid, $id, $totalGB, $expiryTime, $limitIp, $flow) {
+        $this->setId($uid);
+        return $this->command('updateClient', [
+            'id' => $inbound_id,
+            'settings' => $this->jsonEncode([
+                'clients' => [
+                    [
+                        'id'           => $id,
+                        'flow'         => $flow,
+                        'email'        => $email,
+                        'totalGB'      => $totalGB,
+                        'expiryTime'   => $expiryTime,
+                        'limitIp'      => $limitIp,
+                        'delayedStart' => false,
+                        'tgId'         => "",
+                        'subId'        => ""
+                    ]
+                ]
+            ])
+        ], true);
     }
 }
 ?>
