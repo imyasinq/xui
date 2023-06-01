@@ -76,5 +76,10 @@ class Xui extends Base {
         }
         return false;
     }
+
+    public function delete($inbound_id) {
+        $this->setId($inbound_id);
+        return $this->command('delete', [], true);
+    }
 }
 ?>
