@@ -22,5 +22,38 @@ class Xui extends Base {
         $this->setId($id);
         return $this->command('inbound', [], false);
     }
+
+    public function add($remark, $port = 0, $exp = 0, $total = 0, $protocol = "vless", $enable = true, $streamSettings = "tcp", $listen = "") {
+        return $this->command('add', [
+            'enable' => true,
+            'remark' => $remark,
+            'listen' => $listen,
+            'port' => $port,
+            'protocol' => $protocol,
+            'expiryTime' => $exp == 0 ? $exp : $this->getTime($exp),
+            'total' => $total == 0 ? $total : $this->sizeConvert($total),
+            'settings' => $this->jsonEncode($this->settings),
+            'streamSettings' => $this->jsonEncode([
+                'network'     => "tcp",
+                'security'    => "none",
+                'tcpSettings' => [
+                    'acceptProxyProtocol' => false,
+                    'header'              => [
+                        'type'     => "http",
+                        'request'  => [
+                            'method'  => "GET",
+                            'path'    => ["/"],
+                        ],
+                        'response' => [
+                            'version' => "1.1",
+                            'version' => "200",
+                            'reason'  => "OK",
+                        ]
+                    ]
+                ]
+            ]),
+            'sniffing' => $this->jsonEncode($this->sniffing),
+        ], true);
+    }
 }
 ?>
