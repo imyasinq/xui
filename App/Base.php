@@ -29,7 +29,7 @@ class Base {
         'fallbacks'  => []
     ];
 
-    public function __construct($protocol, $hostname, $port, $path = "") {
+    public function __construct($protocol, $hostname, $port, $path) {
         $this->protocol   = $protocol;
         $this->hostname   = $hostname;
         $this->port       = $port;
