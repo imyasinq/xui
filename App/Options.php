@@ -34,7 +34,7 @@ trait Options {
         if (isset($inbound) && $inbound['success'] == true) {
             $status  = $inbound['obj']['enable'] == false ? true : false;
             $inbound = $inbound['obj'];
-            return $this->update($inbound_id, $status, $inbound['expiryTime'], $inbound['total'], $inbound['settings'], $inbound['streamSettings'], $inbound['port'], $inbound['protocol'], $inbound['sniffing'], $inbound['listen']);
+            return $this->update($inbound_id, $status, $inbound['remark'],$inbound['expiryTime'], $inbound['total'], $inbound['settings'], $inbound['streamSettings'], $inbound['port'], $inbound['protocol'], $inbound['sniffing'], $inbound['listen']);
         }
         return false;
     }
