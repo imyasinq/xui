@@ -57,9 +57,9 @@ class Xui extends Base {
     }
 
     public function changeStatusInbound($inbound_id) {
-        $list = json_decode($this->list($inbound_id), true);
-        if (isset($list) && $list['success'] == true) {
-            $inbound = $list['obj'];
+        $inbound = json_decode($this->list($inbound_id), true);
+        if (isset($inbound) && $inbound['success'] == true) {
+            $inbound = $inbound['obj'];
             $status = $inbound['enable'] == true ? false : true;
             return $this->command('update', [
                 'enable' => $status,
@@ -104,9 +104,9 @@ class Xui extends Base {
     }
 
     public function changeUID($inbound_id) {
-        $list = json_decode($this->list($inbound_id,), true);
-        if (isset($list) && $list['success'] == true) {
-            $settings = json_decode($list['obj']['settings'], true);
+        $inbound = json_decode($this->list($inbound_id,), true);
+        if (isset($inbound) && $inbound['success'] == true) {
+            $settings = json_decode($inbound['obj']['settings'], true);
             $client   = $settings['clients'][0];
             if (isset($client)) {
                 $this->setId($client['id']);
