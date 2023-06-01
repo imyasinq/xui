@@ -99,7 +99,7 @@ class Xui extends Base {
         ], true);
     }
 
-    public function updateClient($inbound_id, $uid, $id, $totalGB, $expiryTime, $limitIp, $flow) {
+    public function updateClient($inbound_id, $uid, $id, $totalGB, $expiryTime, $email, $limitIp, $flow) {
         $this->setId($uid);
         return $this->command('updateClient', [
             'id' => $inbound_id,

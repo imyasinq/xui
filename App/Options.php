@@ -41,10 +41,10 @@ trait Options {
 
     public function changeClientUID($inbound_id, $uid) {
         $client_index = $this->getClientIndex($inbound_id, $uid);
-        if ($client_index) {
+        if ($client_index == false) {
             $clients = $this->getClients($inbound_id);
             $client  = $clients[$client_index];
-            return $this->updateClient($inbound_id, $uid, $this->generateId(), $client['totalGB'], $client['expiryTime'], $client['limitIp'], $client['flow']);
+            return $this->updateClient($inbound_id, $uid, $this->generateId(), $client['totalGB'], $client['expiryTime'], $client['email'], $client['limitIp'], $client['flow']);
         }
         return false;
     }
