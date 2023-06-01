@@ -13,5 +13,14 @@ class Xui extends Base {
             'password' => $password
         ], true);
     }
+
+    public function inbounds() {
+        return $this->command('inbounds', [], false);
+    }
+
+    public function inbound($id) {
+        $this->setId($id);
+        return $this->command('inbound', [], false);
+    }
 }
 ?>
