@@ -60,16 +60,16 @@ class Xui extends Base {
 
     public function update($inbound_id, $enable, $remark, $expiryTime, $total, $settings, $streamSettings, $port, $protocol, $sniffing, $listen) {
         return $this->command('update', [
-            'enable' => $enable,
-            'remark' => $remark,
-            'listen' => $listen,
-            'port' => $port,
-            'protocol' => $protocol,
-            'expiryTime' => $expiryTime,
-            'total' => $total,
-            'settings' => $settings,
+            'enable'         => $enable,
+            'remark'         => $remark,
+            'listen'         => $listen,
+            'port'           => $port,
+            'protocol'       => $protocol,
+            'expiryTime'     => $expiryTime,
+            'total'          => $total,
+            'settings'       => $settings,
             'streamSettings' => $streamSettings,
-            'sniffing' => $sniffing,
+            'sniffing'       => $sniffing,
         ], true);
     }
 
