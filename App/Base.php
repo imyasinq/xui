@@ -1,4 +1,7 @@
 <?php
+
+namespace mRYasinQ\xui;
+
 class Base {
     protected $protocol, $hostname, $port, $path;
     protected $cookie;
