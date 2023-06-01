@@ -1,5 +1,5 @@
 {
-    "name": "mRYasinQ/xui",
+    "name": "mryasinq/xui",
     "description": "API for Sanaei X-UI Panel.",
     "type": "library",
     "autoload": {
@@ -9,10 +9,8 @@
     },
     "authors": [
         {
-            "name": "mRYasinQ",
+            "name": "Yasin Abbasi",
             "email": "yasinabbasi.y20@gmail.com"
         }
-    ],
-    "require": {
-    }
+    ]
 }
