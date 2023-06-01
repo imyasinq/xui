@@ -1,6 +1,6 @@
 <?php
 
-namespace mRYasinQ\xui;
+namespace mRYasinQ\App;
 
 class Base {
     protected $protocol, $hostname, $port, $path;
