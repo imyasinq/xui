@@ -58,25 +58,19 @@ class Xui extends Base {
         ], true);
     }
 
-    public function changeStatusInbound($inbound_id) {
-        $inbound = json_decode($this->list($inbound_id), true);
-        if (isset($inbound) && $inbound['success'] == true) {
-            $inbound = $inbound['obj'];
-            $status = $inbound['enable'] == true ? false : true;
-            return $this->command('update', [
-                'enable' => $status,
-                'remark' => $inbound['remark'],
-                'listen' => $inbound['listen'],
-                'port' => $inbound['port'],
-                'protocol' => $inbound['protocol'],
-                'expiryTime' => $inbound['expiryTime'],
-                'total' => $inbound['total'],
-                'settings' => $inbound['settings'],
-                'streamSettings' => $inbound['streamSettings'],
-                'sniffing' => $inbound['sniffing'],
-            ], true);
-        }
-        return false;
+    public function update($inbound_id, $enable, $remark, $expiryTime, $total, $settings, $streamSettings, $port, $protocol, $sniffing, $listen) {
+        return $this->command('update', [
+            'enable' => $enable,
+            'remark' => $remark,
+            'listen' => $listen,
+            'port' => $port,
+            'protocol' => $protocol,
+            'expiryTime' => $expiryTime,
+            'total' => $total,
+            'settings' => $settings,
+            'streamSettings' => $streamSettings,
+            'sniffing' => $sniffing,
+        ], true);
     }
 
     public function delete($inbound_id) {
@@ -106,7 +100,7 @@ class Xui extends Base {
     }
 
     public function changeUID($inbound_id) {
-        $inbound = json_decode($this->list($inbound_id,), true);
+        $inbound = json_decode($this->inbound($inbound_id,), true);
         if (isset($inbound) && $inbound['success'] == true) {
             $settings = json_decode($inbound['obj']['settings'], true);
             $client   = $settings['clients'][0];
