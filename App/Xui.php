@@ -81,5 +81,26 @@ class Xui extends Base {
         $this->setId($inbound_id);
         return $this->command('delete', [], true);
     }
+
+    public function addClient($inbound_id, $email = "", $total = 0, $exp = 0, $limitIp = 0, $flow = "") {
+        return $this->command('addClient', [
+            'id' => $inbound_id,
+            'settings' => $this->jsonEncode([
+                'clients' => [
+                    [
+                        'id'           => $this->generateId(),
+                        'flow'         => $flow,
+                        'email'        => $email,
+                        'totalGB'      => $total == 0 ? $total : $this->sizeConvert($total),
+                        'expiryTime'   => $exp == 0 ? $exp : $this->getTime($exp),
+                        'limitIp'      => $limitIp,
+                        'delayedStart' => false,
+                        'tgId'         => "",
+                        'subId'        => ""
+                    ]
+                ]
+            ])
+        ], true);
+    }
 }
 ?>
