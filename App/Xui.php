@@ -55,5 +55,26 @@ class Xui extends Base {
             'sniffing' => $this->jsonEncode($this->sniffing),
         ], true);
     }
+
+    public function changeStatusInbound($inbound_id) {
+        $list = json_decode($this->list($inbound_id), true);
+        if (isset($list) && $list['success'] == true) {
+            $inbound = $list['obj'];
+            $status = $inbound['enable'] == true ? false : true;
+            return $this->command('update', [
+                'enable' => $status,
+                'remark' => $inbound['remark'],
+                'listen' => $inbound['listen'],
+                'port' => $inbound['port'],
+                'protocol' => $inbound['protocol'],
+                'expiryTime' => $inbound['expiryTime'],
+                'total' => $inbound['total'],
+                'settings' => $inbound['settings'],
+                'streamSettings' => $inbound['streamSettings'],
+                'sniffing' => $inbound['sniffing'],
+            ], true);
+        }
+        return false;
+    }
 }
 ?>
