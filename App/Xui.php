@@ -102,5 +102,35 @@ class Xui extends Base {
             ])
         ], true);
     }
+
+    public function changeUID($inbound_id) {
+        $list = json_decode($this->list($inbound_id,), true);
+        if (isset($list) && $list['success'] == true) {
+            $settings = json_decode($list['obj']['settings'], true);
+            $client   = $settings['clients'][0];
+            if (isset($client)) {
+                $this->setId($client['id']);
+                return $this->command('updateClient', [
+                    'id' => $inbound_id,
+                    'settings' => $this->jsonEncode([
+                        'clients' => [
+                            [
+                                'id'           => $this->generateId(),
+                                'flow'         => $client['flow'],
+                                'email'        => $client['email'],
+                                'totalGB'      => $client['totalGB'],
+                                'expiryTime'   => $client['expiryTime'],
+                                'limitIp'      => $client['limitIp'],
+                                'delayedStart' => false,
+                                'tgId'         => "",
+                                'subId'        => ""
+                            ]
+                        ]
+                    ])
+                ], true);
+            }
+        }
+        return false;
+    }
 }
 ?>
