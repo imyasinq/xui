@@ -14,5 +14,19 @@ trait Options {
         }
         return false;
     }
+
+    public function getClientIndex($inbound_id, $uid) {
+        $clients = $this->getClients($inbound_id);
+        if ($clients) {
+            $i = 0;
+            foreach ($clients as $client) {
+                if ($client['id'] == $uid) {
+                    return $i;
+                }
+                $i++;
+            }
+        }
+        return false;
+    }
 }
 ?>
