@@ -7,8 +7,8 @@ trait Options {
         $inbounds = json_decode($this->inbounds(), true);
         if (isset($inbounds) && $inbounds['success'] == true) {
             if (count($inbounds['obj']) != 0) {
-                foreach ($inbounds as $inbound) {
-                    if ($inbound['obj']['port'] == $port) {
+                foreach ($inbounds['obj'] as $inbound) {
+                    if ($inbound['port'] == $port) {
                         return $this->jsonEncode($inbound);
                     }
                 }
