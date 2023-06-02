@@ -3,7 +3,7 @@
 namespace mRYasinQ\App;
 
 trait Additions {
-    public function generateVless($inbound_id, $address = "", $header = "") {
+    public function generateVless($inbound_id, $header = "", $address = "") {
         $inbound = json_decode($this->inbound($inbound_id), true);
         if (isset($inbound) && $inbound['success'] == true) {
             $configs = [];
