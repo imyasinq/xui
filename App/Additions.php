@@ -11,7 +11,7 @@ trait Additions {
             $port    = $inbound['obj']['port'];
             $address = $address == "" ? $this->hostname : $address;
             $host    = $header == "" ? "" : "&host={$header}";
-            $clients = json_decode($this->getClients($inbound_id));
+            $clients = json_decode($this->getClients($inbound_id), true);
             if ($clients) {
                 foreach ($clients as $client) {
                     $uid       = $client['id'];
