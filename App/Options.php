@@ -3,6 +3,20 @@
 namespace mRYasinQ\App;
 
 trait Options {
+    public function getInbound($port) {
+        $inbounds = json_decode($this->inbounds(), true);
+        if (isset($inbounds) && $inbounds['success'] == true) {
+            if (count($inbounds['obj']) != 0) {
+                foreach ($inbounds as $inbound) {
+                    if ($inbound['obj']['port'] == $port) {
+                        return $this->jsonEncode($inbound);
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
     public function getClients($inbound_id) {
         $inbound = json_decode($this->inbound($inbound_id), true);
         if (isset($inbound) && $inbound['success'] == true) {
