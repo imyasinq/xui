@@ -3,6 +3,8 @@
 namespace mRYasinQ\App;
 
 class Xui extends Base {
+    use Options;
+    
     public function __construct($protocol, $hostname, $port, $path = "") {
         parent::__construct($protocol, $hostname, $port, $path);
     }
