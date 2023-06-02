@@ -3,6 +3,8 @@
 namespace mRYasinQ\App;
 
 class Base {
+    use Options;
+
     protected $protocol, $hostname, $port, $path;
     protected $cookie;
     protected $id;
