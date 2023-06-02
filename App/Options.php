@@ -23,7 +23,7 @@ trait Options {
             $settings = json_decode($inbound['obj']['settings'], true);
             $clients  = $settings['clients'];
             if (count($clients) != 0) {
-                return $clients;
+                return $this->jsonEncode($clients);
             }
         }
         return false;
