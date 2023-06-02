@@ -30,7 +30,7 @@ trait Options {
     }
 
     public function getClientIndex($inbound_id, $uid) {
-        $clients = json_encode($this->getClients($inbound_id), true);
+        $clients = json_decode($this->getClients($inbound_id), true);
         if ($clients) {
             $i = 0;
             foreach ($clients as $client) {
