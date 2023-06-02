@@ -55,6 +55,17 @@ class Base {
         return substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz'), 1, 8);
     }
 
+    public function generatePort() {
+        $i = 0;
+        while ($i < 1) {
+            $port = rand(10000, 60000);
+            if (!$this->getInbound($port)) {
+                $i++;
+                return $port;
+            }
+        }
+    }
+
     public function getTime($day) {
         return strtotime("+{$day} day") * 1000;
     }
