@@ -48,7 +48,7 @@ trait Options {
         if (isset($inbound) && $inbound['success'] == true) {
             $status  = $inbound['obj']['enable'] == false ? true : false;
             $inbound = $inbound['obj'];
-            return $this->update($inbound_id, $status, $inbound['remark'],$inbound['expiryTime'], $inbound['total'], $inbound['settings'], $inbound['streamSettings'], $inbound['port'], $inbound['protocol'], $inbound['sniffing'], $inbound['listen']);
+            return $this->update($inbound_id, $status, $inbound['remark'], $inbound['expiryTime'], $inbound['total'], $inbound['settings'], $inbound['streamSettings'], $inbound['port'], $inbound['protocol'], $inbound['sniffing'], $inbound['listen']);
         }
         return false;
     }
@@ -58,7 +58,7 @@ trait Options {
         if ($client_index == false) {
             $clients = json_decode($this->getClients($inbound_id), true);
             $client  = $clients[$client_index];
-            return $this->updateClient($inbound_id, $uid, $this->generateId(), $client['totalGB'], $client['expiryTime'], $client['email'], $client['limitIp'], $client['flow']);
+            return $this->updateClient($inbound_id, $uid, $this->generateId(), $client['expiryTime'], $client['totalGB'], $client['email'], $client['limitIp'], $client['flow']);
         }
         return false;
     }
