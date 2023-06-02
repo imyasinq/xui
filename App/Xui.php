@@ -78,7 +78,7 @@ class Xui extends Base {
         return $this->command('delete', [], true);
     }
 
-    public function addClient($inbound_id, $email = "", $total = 0, $exp = 0, $limitIp = 0, $flow = "") {
+    public function addClient($inbound_id, $exp = 0, $total = 0, $email = "", $limitIp = 0, $flow = "") {
         return $this->command('addClient', [
             'id' => $inbound_id,
             'settings' => $this->jsonEncode([
@@ -99,7 +99,7 @@ class Xui extends Base {
         ], true);
     }
 
-    public function updateClient($inbound_id, $uid, $id, $totalGB, $expiryTime, $email, $limitIp, $flow) {
+    public function updateClient($inbound_id, $uid, $id, $expiryTime, $totalGB, $email, $limitIp, $flow) {
         $this->setId($uid);
         return $this->command('updateClient', [
             'id' => $inbound_id,
