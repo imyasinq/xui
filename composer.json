@@ -1,6 +1,6 @@
 {
     "name": "mryasinq/xui",
-    "description": "API for Sanaei X-UI Panel.",
+    "description": "web service for Sanaei X-UI Panel.",
     "type": "library",
     "autoload": {
         "psr-4": {
