@@ -120,8 +120,6 @@ class Base {
 
         if (curl_error($ch)) {
             file_put_contents("xui_curl_error.txt", curl_error($ch));
-        } else {
-            file_put_contents("xui_curl_result.txt", $result);
         }
 
         curl_close($ch);
