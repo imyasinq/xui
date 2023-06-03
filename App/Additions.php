@@ -13,9 +13,13 @@ trait Additions {
             $host    = $header == "" ? "" : "&host={$header}";
             $clients = json_decode($this->getClients($inbound_id), true);
             if ($clients) {
+                $i = 0;
                 foreach ($clients as $client) {
-                    $uid       = $client['id'];
-                    $configs[] = "vless://{$uid}@{$address}:{$port}?encryption=none&security=none&type=tcp&headerType=http{$host}#{$remark}-{$inbound_id}";
+                    $uid                     = $client['id'];
+                    $configs[$i]['inbound_id'] = $inbound_id;
+                    $configs[$i]['uid']        = $uid;
+                    $configs[$i]['config']     = "vless://{$uid}@{$address}:{$port}?encryption=none&security=none&type=tcp&headerType=http{$host}#{$remark}-{$inbound_id}";
+                    $i++;
                 }
                 return $this->jsonEncode($configs);
             }
