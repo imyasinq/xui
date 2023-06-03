@@ -26,5 +26,13 @@ trait Additions {
         }
         return false;
     }
+
+    public function exportUIDVless($config) {
+        preg_match("/(?<=:\/\/)(.*)(?=@)/", $config, $uid);
+        if (isset($uid[0])) {
+            return $uid[0];
+        }
+        return false;
+    }
 }
 ?>
