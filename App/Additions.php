@@ -15,7 +15,7 @@ trait Additions {
             if ($clients) {
                 $i = 0;
                 foreach ($clients as $client) {
-                    $uid                     = $client['id'];
+                    $uid                       = $client['id'];
                     $configs[$i]['inbound_id'] = $inbound_id;
                     $configs[$i]['uid']        = $uid;
                     $configs[$i]['config']     = "vless://{$uid}@{$address}:{$port}?encryption=none&security=none&type=tcp&headerType=http{$host}#{$remark}-{$inbound_id}";
