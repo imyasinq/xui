@@ -17,6 +17,20 @@ class Xui extends Base {
         ], true);
     }
 
+    public function logout() {
+        if (unlink($this->getCookie())) {
+            return $this->jsonEncode([
+                'success' => true,
+                'msg'     => "Logout was successful."
+            ]);
+        } else {
+            return $this->jsonEncode([
+                'success' => false,
+                'msg'     => "Please try again."
+            ]);
+        }
+    }
+
     public function inbounds() {
         return $this->command('inbounds', [], false);
     }
