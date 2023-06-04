@@ -3,7 +3,7 @@
 namespace mRYasinQ\App;
 
 trait Options {
-    public function addInbound($remark, $exp = 0, $total = 0) {
+    public function addAccount($remark, $exp = 0, $total = 0) {
         $add = json_decode($this->add($remark, $exp, $total), true);
         if (isset($add) && $add['success'] == true) {
             $inbound_id = $add['obj']['id'];
