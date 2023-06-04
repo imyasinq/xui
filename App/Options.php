@@ -15,6 +15,25 @@ trait Options {
         return false;
     }
 
+    public function getInboundByUID($uid) {
+        $inbounds = json_decode($this->inbounds(), true);
+        if (isset($inbounds) && $inbounds['success'] == true) {
+            if (count($inbounds['obj']) != 0) {
+                foreach ($inbounds['obj'] as $inbound) {
+                    $clients = json_decode($this->getClients($inbound['id']), true);
+                    if ($clients) {
+                        foreach ($clients as $client) {
+                            if ($client['id'] == $uid) {
+                                return $this->jsonEncode($inbound);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
     public function getInboundByPort($port) {
         $inbounds = json_decode($this->inbounds(), true);
         if (isset($inbounds) && $inbounds['success'] == true) {
