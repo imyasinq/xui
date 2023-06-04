@@ -93,5 +93,32 @@ trait Options {
         }
         return false;
     }
+
+    public function deleteDisableInbound() {
+        $inbounds = json_decode($this->inbounds(), true);
+        if (isset($inbounds) && $inbounds['success'] == true) {
+            if (count($inbounds['obj']) != 0) {
+                $i = 0;
+                foreach ($inbounds['obj'] as $inbound) {
+                    if ($inbound['enable'] == false) {
+                        $delete = json_decode($this->delete($inbound['id']), true);
+                        if (isset($delete) && $delete['success'] == true) {
+                            $i++;
+                        } else {
+                            return $this->jsonEncode([
+                                'success' => false,
+                                'msg'     => ""
+                            ]);
+                        }
+                    }
+                }
+                return $this->jsonEncode([
+                    'success' => true,
+                    'msg'     => $i
+                ]);
+            }
+        }
+        return false;
+    }
 }
 ?>
