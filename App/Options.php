@@ -15,7 +15,7 @@ trait Options {
         return false;
     }
 
-    public function getInbound($port) {
+    public function getInboundByPort($port) {
         $inbounds = json_decode($this->inbounds(), true);
         if (isset($inbounds) && $inbounds['success'] == true) {
             if (count($inbounds['obj']) != 0) {
