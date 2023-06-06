@@ -57,7 +57,7 @@ class Base {
         $i = 0;
         while ($i < 1) {
             $port = rand(10000, 60000);
-            if (!$this->getInbound($port)) {
+            if (!$this->getInboundByPort($port)) {
                 $i++;
                 return $port;
             }
