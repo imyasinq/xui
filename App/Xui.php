@@ -35,8 +35,8 @@ class Xui extends Base {
         return $this->command('inbounds', [], false);
     }
 
-    public function inbound($id) {
-        $this->setId($id);
+    public function inbound($inbound_id) {
+        $this->setId($inbound_id);
         return $this->command('inbound', [], false);
     }
 
