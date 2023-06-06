@@ -107,7 +107,7 @@ trait Options {
                         } else {
                             return $this->jsonEncode([
                                 'success' => false,
-                                'msg'     => ""
+                                'msg'     => $i
                             ]);
                         }
                     }
