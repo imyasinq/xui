@@ -3,13 +3,13 @@
 namespace mRYasinQ\App;
 
 trait Options {
-    public function addAccount($remark, $exp = 0, $total = 0) {
+    public function addAccount($remark, $address, $exp = 0, $total = 0, $header = "") {
         $add = json_decode($this->add($remark, $exp, $total), true);
         if (isset($add) && $add['success'] == true) {
             $inbound_id = $add['obj']['id'];
             $addClient  = json_decode($this->addClient($inbound_id, $exp, $total), true);
             if (isset($addClient) && $addClient['success'] == true) {
-                return $this->generateVless($inbound_id);
+                return $this->generateVless($inbound_id, $address, $header);
             }
         }
         return false;
