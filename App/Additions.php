@@ -3,13 +3,12 @@
 namespace mRYasinQ\App;
 
 trait Additions {
-    public function generateVless($inbound_id, $header = "", $address = "") {
+    public function generateVless($inbound_id, $address, $header = "") {
         $inbound = json_decode($this->inbound($inbound_id), true);
         if (isset($inbound) && $inbound['success'] == true) {
             $configs = [];
             $remark  = $inbound['obj']['remark'];
             $port    = $inbound['obj']['port'];
-            $address = $address == "" ? $this->hostname : $address;
             $host    = $header == "" ? "" : "&host={$header}";
             $clients = json_decode($this->getClients($inbound_id), true);
             if ($clients) {
