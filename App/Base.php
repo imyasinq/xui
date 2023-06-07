@@ -95,9 +95,8 @@ class Base {
     }
 
     protected function command($method, $data, $isPost = false) {
-        $path = $this->path != "" ? "/{$this->path}" : $this->path;
-        $url  = "{$this->protocol}://{$this->hostname}:{$this->port}{$path}/{$this->getMethod($method)}";
-        $ch   = curl_init();
+        $url = "{$this->hostname}/{$this->getMethod($method)}";
+        $ch  = curl_init();
 
         $options = [
             CURLOPT_SSL_VERIFYHOST => false,
