@@ -22,6 +22,34 @@ class Soft {
             if (isset($login) && $login['success'] == true) {
                 $result = false;
                 switch($path) {
+                    case '/add':
+                        if (isset($data['remark']) && isset($data['address']) && isset($data['exp']) && isset($data['total']) && isset($data['header'])) {
+                            $result = $xui->addAccount($data['remark'], $data['address'], $data['exp'], $data['total'], $data['header']);
+                        }
+                        break;
+
+                    case '/changeStatusInbound':
+                        if (isset($data['id'])) {
+                            $result = $xui->changeStatusInbound($data['id']);
+                        }
+                        break;
+
+                    case '/changeClientUID':
+                        if (isset($data['id']) && isset($data['uid'])) {
+                            $result = $xui->changeClientUID($data['id'], $data['uid']);
+                        }
+                        break;
+
+                    case '/delete':
+                        if (isset($data['id'])) {
+                            $result = $xui->delete($data['id']);
+                        }
+                        break;
+
+                    case '/deleteDisabled':
+                        $result = $xui->deleteDisableInbound();
+                        break;
+
                     default:
                         $result = $this->getMessage(false, "Not Found.");
                         break;
