@@ -42,14 +42,14 @@ class Xui extends Base {
 
     public function add($remark, $exp = 0, $total = 0, $protocol = "vless", $listen = "", $enable = true) {
         return $this->command('add', [
-            'enable' => true,
-            'remark' => $remark,
-            'listen' => $listen,
-            'port' => $this->generatePort(),
-            'protocol' => $protocol,
-            'expiryTime' => $exp == 0 ? $exp : $this->getTime($exp),
-            'total' => $total == 0 ? $total : $this->sizeConvert($total),
-            'settings' => $this->jsonEncode($this->settings),
+            'enable'         => true,
+            'remark'         => $remark,
+            'listen'         => $listen,
+            'port'           => $this->generatePort(),
+            'protocol'       => $protocol,
+            'expiryTime'     => $exp == 0 ? $exp : $this->getTime($exp),
+            'total'          => $total == 0 ? $total : $this->sizeConvert($total),
+            'settings'       => $this->jsonEncode($this->settings),
             'streamSettings' => $this->jsonEncode([
                 'network'     => "tcp",
                 'security'    => "none",
