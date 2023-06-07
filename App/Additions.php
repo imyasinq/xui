@@ -1,6 +1,6 @@
 <?php
 
-namespace mRYasinQ\App;
+namespace Xui\App;
 
 trait Additions {
     public function generateVless($inbound_id, $address, $header = "") {

@@ -1,6 +1,6 @@
 <?php
 
-namespace mRYasinQ\App;
+namespace Xui\App;
 
 class Base {
     protected $hostname;

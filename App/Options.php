@@ -1,6 +1,6 @@
 <?php
 
-namespace mRYasinQ\App;
+namespace Xui\App;
 
 trait Options {
     public function addAccount($remark, $address, $exp = 0, $total = 0, $header = "") {
