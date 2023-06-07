@@ -5,11 +5,14 @@ use \Xui\App\Xui;
 
 class Soft {
     public function __construct($server, $data) {
+        $response = false;
         if (isset($server['REQUEST_METHOD']) && $server['REQUEST_METHOD'] == "GET" && isset($server['PATH_INFO']) && !empty($server['PATH_INFO'])) {
-            return $this->sendRequest($server['PATH_INFO'], $data);
+            $response = $this->sendRequest($server['PATH_INFO'], $data);
         } else {
-            return $this->getMessage(false, "Not Found.");
+            $response = $this->getMessage(false, "Not Found.");
         }
+        echo $response;
+        return $response;
     }
 
     private function sendRequest($path, $data) {
@@ -20,16 +23,17 @@ class Soft {
                 $result = false;
                 switch($path) {
                     default:
-                        return $this->getMessage(false, "Not Found.");
+                        $result = $this->getMessage(false, "Not Found.");
                         break;
                 }
                 $xui->logout();
-                echo $result;
                 return $result;
             } else {
                 return json_encode($login);
             }
         }
+
+        return $this->getMessage(false, "Please try again.");
     }
 
     private function getMessage(bool $status, string $message) {
