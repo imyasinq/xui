@@ -6,8 +6,8 @@ class Xui extends Base {
     use Options;
     use Additions;
     
-    public function __construct($protocol, $hostname, $port, $path = "") {
-        parent::__construct($protocol, $hostname, $port, $path);
+    public function __construct($hostname) {
+        parent::__construct($hostname);
     }
 
     public function login($username, $password) {
