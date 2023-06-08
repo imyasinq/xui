@@ -7,7 +7,7 @@ class Soft {
     public function __construct($server, $data) {
         $response = false;
         if (isset($server['REQUEST_METHOD']) && $server['REQUEST_METHOD'] == "GET" && isset($server['PATH_INFO']) && !empty($server['PATH_INFO'])) {
-            $response = $this->sendRequest($server['PATH_INFO'], $data);
+            $response = $this->sendRequest(strtolower($server['PATH_INFO']), $data);
         } else {
             $response = $this->getMessage(false, "Not Found.");
         }
@@ -28,13 +28,13 @@ class Soft {
                         }
                         break;
 
-                    case '/addInbound':
+                    case '/addinbound':
                         if (isset($data['remark']) && isset($data['exp']) && isset($data['total'])) {
                             $result = $xui->add($data['remark'], $data['exp'], $data['total']);
                         }
                         break;
 
-                    case '/addClient':
+                    case '/addclient':
                         if (isset($data['id']) && isset($data['exp']) && isset($data['total'])) {
                             $result = $xui->addClient($data['id'], $data['exp'], $data['total']);
                         }
@@ -44,31 +44,47 @@ class Soft {
                         $result = $xui->inbounds();
                         break;
 
-                    case '/getStatusById':
+                    case '/status':
+                        $result = $xui->inboundsStatus();
+                        break;
+
+                    case '/getstatusbyid':
                         if (isset($data['id'])) {
                             $result = $xui->getStatusById($data['id']);
                         }
                         break;
 
-                    case '/getStatusByUID':
+                    case '/getstatusbyuid':
                         if (isset($data['uid'])) {
                             $result = $xui->getStatusByUID($data['uid']);
                         }
                         break;
 
-                    case '/getStatusByPort':
+                    case '/getstatusbyport':
                         if (isset($data['port'])) {
                             $result = $xui->getStatusByPort($data['port']);
                         }
                         break;
 
-                    case '/changeStatusInbound':
+                    case '/changestatusinbound':
                         if (isset($data['id'])) {
                             $result = $xui->changeStatusInbound($data['id']);
                         }
                         break;
 
-                    case '/changeClientUID':
+                    case '/setenablestatus':
+                        if (isset($data['id'])) {
+                            $result = $xui->changeStatusInbound($data['id'], true);
+                        }
+                        break;
+
+                    case '/setdisablestatus':
+                        if (isset($data['id'])) {
+                            $result = $xui->changeStatusInbound($data['id'], false);
+                        }
+                        break;
+
+                    case '/changeclientuid':
                         if (isset($data['id']) && isset($data['uid'])) {
                             $result = $xui->changeClientUID($data['id'], $data['uid']);
                         }
@@ -80,7 +96,7 @@ class Soft {
                         }
                         break;
 
-                    case '/deleteDisabled':
+                    case '/deletedisabled':
                         $result = $xui->deleteDisableInbound();
                         break;
 
@@ -89,7 +105,11 @@ class Soft {
                         break;
                 }
                 $xui->logout();
-                return $result;
+                if ($result != false) {
+                    return $result;
+                } else {
+                    $this->getMessage(false, "Please try again.");
+                }
             } else {
                 return json_encode($login);
             }
