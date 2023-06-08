@@ -48,6 +48,30 @@ trait Options {
         return false;
     }
 
+    public function getStatusById($inbound_id) {
+        $inbound = json_decode($this->inbound($inbound_id), true);
+        if (isset($inbound) && $inbound['success'] == true) {
+            return $this->inboundStatus($inbound['obj']);
+        }
+        return false;
+    }
+
+    public function getStatusByUID($uid) {
+        $inbound = json_decode($this->getInboundByUID($uid), true);
+        if ($inbound) {
+            return $this->inboundStatus($inbound);
+        }
+        return false;
+    }
+
+    public function getStatusByPort($port) {
+        $inbound = json_decode($this->getInboundByPort($port), true);
+        if ($inbound) {
+            return $this->inboundStatus($inbound);
+        }
+        return false;
+    }
+
     public function getClients($inbound_id) {
         $inbound = json_decode($this->inbound($inbound_id), true);
         if (isset($inbound) && $inbound['success'] == true) {
