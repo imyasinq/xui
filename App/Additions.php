@@ -6,12 +6,12 @@ trait Additions {
     public function generateVless($inbound_id, $address, $header = "") {
         $inbound = json_decode($this->inbound($inbound_id), true);
         if (isset($inbound) && $inbound['success'] == true) {
-            $configs = [];
             $remark  = $inbound['obj']['remark'];
             $port    = $inbound['obj']['port'];
             $host    = $header == "" ? "" : "&host={$header}";
             $clients = json_decode($this->getClients($inbound_id), true);
             if ($clients) {
+                $configs = [];
                 $i = 0;
                 foreach ($clients as $client) {
                     $uid                       = $client['id'];
