@@ -55,5 +55,13 @@ trait Additions {
             'exp'        => $exp != 0 ? $this->convertDate($exp) : "نامحدود"
         ]);
     }
+
+    public function inboundsStatus() {
+        return $this->jsonEncode([
+            'inbounds'         => $this->countInbounds(),
+            'enable_inbounds'  => $this->countInboundsByStatus(true),
+            'disable_inbounds' => $this->countInboundsByStatus(false)
+        ]);
+    }
 }
 ?>
