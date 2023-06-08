@@ -48,5 +48,13 @@ trait Additions {
     public function convertDate($date) {
         return date("d F Y H:i:s", floor($date / 1000));
     }
+
+    public function getDiffDays($date) {
+        $now  = time();
+        $date = floor($date / 1000);
+        $diff = $date - $now;
+        $days = round($diff / (60 * 60 * 24));
+        return $days;
+    }
 }
 ?>
