@@ -56,5 +56,25 @@ trait Additions {
         $days = round($diff / (60 * 60 * 24));
         return $days;
     }
+
+    public function inboundStatus(array $inbound) {
+        $usage = $inbound['down'] + $inbound['up'];
+        $total = $inbound['total'];
+        $exp   = $inbound['expiryTime'];
+        return $this->jsonEncode([
+            'enable'     => $inbound['enable'],
+            'inbound_id' => $inbound['id'],
+            'remark'     => $inbound['remark'],
+            'port'       => $inbound['port'],
+            'protocol'   => $inbound['protocol'],
+            'upload'     => $this->convertSize($inbound['up']),
+            'download'   => $this->convertSize($inbound['down']),
+            'usage'      => $this->convertSize($usage),
+            'rem_trf'    => $total != 0 ? $this->convertSize($total - $usage) : 'نامحدود',
+            'total'      => $total != 0 ? $this->convertSize($total) : "نامحدود",
+            'rem_day'    => $exp != 0 ? $this->getDiffDays($exp) : "نامحدود",
+            'exp'        => $exp != 0 ? $this->convertDate($exp) : "نامحدود"
+        ]);
+    }
 }
 ?>
