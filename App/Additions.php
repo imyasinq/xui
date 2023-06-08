@@ -35,5 +35,14 @@ trait Additions {
         }
         return false;
     }
+
+    public function convertSize($byte, $precision = "2") {
+        $units = array('بایت', 'کیلوبایت', 'مگابایت', 'گیگابایت', 'ترابایت');
+        $byte  = max($byte, 0);
+        $pow   = floor(($byte ? log($byte) : 0) / log(1024));
+        $pow   = min($pow, count($units) - 1);
+        $byte /= pow(1024, $pow);
+        return round($byte, $precision)." ".$units[$pow];
+    }
 }
 ?>
