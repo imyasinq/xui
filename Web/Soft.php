@@ -28,6 +28,18 @@ class Soft {
                         }
                         break;
 
+                    case '/addInbound':
+                        if (isset($data['remark']) && isset($data['exp']) && isset($data['total'])) {
+                            $result = $xui->add($data['remark'], $data['exp'], $data['total']);
+                        }
+                        break;
+
+                    case '/addClient':
+                        if (isset($data['id']) && isset($data['exp']) && isset($data['total'])) {
+                            $result = $xui->addClient($data['id'], $data['exp'], $data['total']);
+                        }
+                        break;
+
                     case '/changeStatusInbound':
                         if (isset($data['id'])) {
                             $result = $xui->changeStatusInbound($data['id']);
