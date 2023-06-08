@@ -40,6 +40,28 @@ class Soft {
                         }
                         break;
 
+                    case '/inbounds':
+                        $result = $xui->inbounds();
+                        break;
+
+                    case '/getStatusById':
+                        if (isset($data['id'])) {
+                            $result = $xui->getStatusById($data['id']);
+                        }
+                        break;
+
+                    case '/getStatusByUID':
+                        if (isset($data['uid'])) {
+                            $result = $xui->getStatusByUID($data['uid']);
+                        }
+                        break;
+
+                    case '/getStatusByPort':
+                        if (isset($data['port'])) {
+                            $result = $xui->getStatusByPort($data['port']);
+                        }
+                        break;
+
                     case '/changeStatusInbound':
                         if (isset($data['id'])) {
                             $result = $xui->changeStatusInbound($data['id']);
