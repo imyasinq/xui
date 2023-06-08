@@ -90,6 +90,12 @@ class Soft {
                         }
                         break;
 
+                    case '/generatevless':
+                        if (isset($data['id']) && isset($data['address']) && isset($data['header'])) {
+                            $result = $xui->generateVless($data['id'], $data['address'], $data['header']);
+                        }
+                        break;
+
                     case '/delete':
                         if (isset($data['id'])) {
                             $result = $xui->delete($data['id']);
