@@ -66,6 +66,27 @@ class Base {
         return strtotime("+{$day} day") * 1000;
     }
 
+    public function convertSize($byte, $precision = "2") {
+        $units = array('بایت', 'کیلوبایت', 'مگابایت', 'گیگابایت', 'ترابایت');
+        $byte  = max($byte, 0);
+        $pow   = floor(($byte ? log($byte) : 0) / log(1024));
+        $pow   = min($pow, count($units) - 1);
+        $byte /= pow(1024, $pow);
+        return round($byte, $precision)." ".$units[$pow];
+    }
+
+    public function convertDate($date) {
+        return date("d F Y H:i:s", floor($date / 1000));
+    }
+
+    public function getDiffDays($date) {
+        $now  = time();
+        $date = floor($date / 1000);
+        $diff = $date - $now;
+        $days = round($diff / (60 * 60 * 24));
+        return $days;
+    }
+
     public function jsonEncode($data) {
         return json_encode($data, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
     }
