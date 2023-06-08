@@ -98,10 +98,12 @@ trait Options {
         return false;
     }
 
-    public function changeStatusInbound($inbound_id) {
+    public function changeStatusInbound($inbound_id, $status = NULL) {
         $inbound = json_decode($this->inbound($inbound_id), true);
         if (isset($inbound) && $inbound['success'] == true) {
-            $status  = $inbound['obj']['enable'] == false ? true : false;
+            if ($status == NULL) {
+                $status = $inbound['obj']['enable'] == false ? true : false;
+            }
             $inbound = $inbound['obj'];
             return $this->update($inbound_id, $status, $inbound['remark'], $inbound['expiryTime'], $inbound['total'], $inbound['settings'], $inbound['streamSettings'], $inbound['port'], $inbound['protocol'], $inbound['sniffing'], $inbound['listen']);
         }
