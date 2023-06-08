@@ -144,5 +144,29 @@ trait Options {
         }
         return false;
     }
+
+    public function countInbounds() {
+        $inbounds = json_decode($this->inbounds(), true);
+        if (isset($inbounds) && $inbounds['success'] == true) {
+            return count($inbounds['obj']);
+        }
+        return false;
+    }
+
+    public function countInboundsByStatus(bool $status) {
+        $inbounds = json_decode($this->inbounds(), true);
+        if (isset($inbounds) && $inbounds['success'] == true) {
+            if (count($inbounds['obj']) != 0) {
+                $i = 0;
+                foreach ($inbounds['obj'] as $inbound) {
+                    if ($inbound['enable'] == $status) {
+                        $i++;
+                    }
+                }
+                return $i;
+            }
+        }
+        return false;
+    }
 }
 ?>
