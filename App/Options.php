@@ -15,6 +15,21 @@ trait Options {
         return false;
     }
 
+    public function getInbounds() {
+        $inbounds = json_decode($this->inbounds(), true);
+        if (isset($inbounds) && $inbounds['success'] == true) {
+            if (count($inbounds['obj']) != 0) {
+                $new_inbounds = [];
+                $i = 0;
+                foreach ($inbounds['obj'] as $inbound) {
+                    $new_inbounds[$i] = $this->inboundStatus($inbound);
+                }
+                return $this->jsonEncode($new_inbounds);
+            }
+        }
+        return false;
+    }
+
     public function getInboundByUID($uid) {
         $inbounds = json_decode($this->inbounds(), true);
         if (isset($inbounds) && $inbounds['success'] == true) {

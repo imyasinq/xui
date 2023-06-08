@@ -41,7 +41,7 @@ class Soft {
                         break;
 
                     case '/inbounds':
-                        $result = $xui->inbounds();
+                        $result = $xui->getInbounds();
                         break;
 
                     case '/status':
