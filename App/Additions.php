@@ -44,5 +44,9 @@ trait Additions {
         $byte /= pow(1024, $pow);
         return round($byte, $precision)." ".$units[$pow];
     }
+
+    public function convertDate($date) {
+        return date("d F Y H:i:s", floor($date / 1000));
+    }
 }
 ?>
