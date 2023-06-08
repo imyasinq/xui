@@ -22,7 +22,7 @@ trait Options {
                 $new_inbounds = [];
                 $i = 0;
                 foreach ($inbounds['obj'] as $inbound) {
-                    $new_inbounds[$i] = $this->inboundStatus($inbound);
+                    $new_inbounds[][$i] = json_decode($this->inboundStatus($inbound), true);
                 }
                 return $this->jsonEncode($new_inbounds);
             }
